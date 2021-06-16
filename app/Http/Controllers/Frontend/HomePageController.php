@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Article;
 
 class HomePageController extends Controller
 {
@@ -15,8 +16,9 @@ class HomePageController extends Controller
      */
     public function index()
     {
+        $articles=Article::orderBy('created_at','DESC')->get();
         $categories=Category::get();
-        return view('frontend.homepage',compact('categories'));
+        return view('frontend.homepage',compact('categories','articles'));
     }
 
     /**
