@@ -17,4 +17,8 @@ class Category extends Model
         'created_at'
     ];
 
+    public function articleCount(){
+       return $this->hasMany('App\Models\Article','category_id','id')->count();
+    }
+
 }

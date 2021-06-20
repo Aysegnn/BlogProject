@@ -17,3 +17,6 @@ use App\Http\Controllers\Frontend\HomePageController;
 
 Route::get('/', [HomePageController::class,'index'] )->name('homepage');
 
+
+Route::get('/{category}/{slug}', [HomePageController::class,'show'] )->name('blog-single');
+

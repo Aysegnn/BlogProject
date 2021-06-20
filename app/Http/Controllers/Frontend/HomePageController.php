@@ -21,11 +21,9 @@ class HomePageController extends Controller
         return view('frontend.homepage',compact('categories','articles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
+
+
     public function create()
     {
         //
@@ -48,9 +46,15 @@ class HomePageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($category,$slug)
     {
-        //
+      
+       $category=Category::whereSlug($category)->first() ?? abort(404,'Not Found');
+       $article=Article::where('slug',$slug)->whereCategoryId($category->id)->first() ?? abort(404,'Not Found');
+       $article->increment('hit');
+       $categories=Category::get();
+
+      return view('frontend.post',compact('article'));
     }
 
     /**
