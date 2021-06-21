@@ -46,7 +46,7 @@ class HomePageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($category,$slug)
+    public function showPost($category,$slug)
     {
       
        $category=Category::whereSlug($category)->first() ?? abort(404,'Not Found');
@@ -55,6 +55,14 @@ class HomePageController extends Controller
        $categories=Category::get();
 
       return view('frontend.post',compact('article'));
+    }
+
+    public function showCategory($slug)
+    {
+    $categories=Category::get();
+      $category=Category::whereSlug($slug)->first() ?? abort(404,'Not Found');
+      $articles=Article::where('category_id',$category->id)->orderBy('created_at','DESC')->get();
+      return view('frontend.categories',compact('category','articles','categories'));
     }
 
     /**

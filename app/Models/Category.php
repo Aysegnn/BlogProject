@@ -21,4 +21,7 @@ class Category extends Model
        return $this->hasMany('App\Models\Article','category_id','id')->count();
     }
 
+  
+
+
 }
