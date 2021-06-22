@@ -6,32 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Article;
+use App\Models\Page;
+
 
 class HomePageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  public function __construct(){
+      view()->share('pages',Page::orderBy('order','ASC')->get());
+      view()->share('categories',Category::get());
+  } 
     public function index()
     {
         $articles=Article::orderBy('created_at','DESC')->paginate(5);
-        $categories=Category::get();
-        return view('frontend.homepage',compact('categories','articles'));
-    }
-
-   
-
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
+        return view('frontend.homepage',compact('articles'));
     }
 
     public function showPost($category,$slug)
@@ -40,28 +27,24 @@ class HomePageController extends Controller
        $category=Category::whereSlug($category)->first() ?? abort(404,'Not Found');
        $article=Article::where('slug',$slug)->whereCategoryId($category->id)->first() ?? abort(404,'Not Found');
        $article->increment('hit');
-       $categories=Category::get();
+       
 
       return view('frontend.post',compact('article'));
     }
 
     public function showCategory($slug)
     {
-    $categories=Category::get();
+     
       $category=Category::whereSlug($slug)->first() ?? abort(404,'Not Found');
       $articles=Article::where('category_id',$category->id)->orderBy('created_at','DESC')->paginate(3);
-      return view('frontend.categories',compact('category','articles','categories'));
+      return view('frontend.categories',compact('category','articles'));
     }
 
-  
-    public function edit($id)
+    public function page($slug)
     {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
+        $page=Page::whereSlug($slug)->first() ?? abort(404,'Not Found');
+         return view('frontend.page',compact('page'));
+        
     }
 
     public function destroy($id)
