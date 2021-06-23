@@ -4,7 +4,7 @@
 @section('content')
        
 
-                    <div class="col-md-9 mx-auto">
+                    <div class="col-md-8 ">
                       {{$article->content}}
                       <div>
                       <span class="text-danger">
@@ -14,6 +14,9 @@
                      
                     </div>
    
-    
-                    @include('frontend.widgets.categoryWidget')
+
+    @include('frontend.widgets.categoryWidget')
+
+
+                   
 @endsection
