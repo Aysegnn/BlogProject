@@ -14,10 +14,15 @@ use App\Http\Controllers\Backend\AuthController;;
 
 */
 
-Route::get('/admin/panel',[DashboardController::class,'index'])->name('dashboard');
-Route::get('/admin/login',[AuthController::class,'login'])->name('login');
-Route::post('/admin/login',[AuthController::class,'loginPost'])->name('login-post');
-Route::get('/admin/logout',[AuthController::class,'logout'])->name('logout');
+Route::prefix('admin')->middleware('isLogin')->group(function(){
+    Route::get('login',[AuthController::class,'login'])->name('login');
+    Route::post('login',[AuthController::class,'loginPost'])->name('login-post');
+});
+
+Route::prefix('admin')->middleware('isAdmin')->group(function(){
+    Route::get('panel',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('logout',[AuthController::class,'logout'])->name('logout');
+});
 
 
 
