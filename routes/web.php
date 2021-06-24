@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomePageController;
 use App\Http\Controllers\Backend\DashboardController;
-use App\Http\Controllers\Backend\AuthController;;
+use App\Http\Controllers\Backend\AuthController;
+use App\Http\Controllers\Backend\ArticleController;
 
 
 
@@ -21,6 +22,7 @@ Route::prefix('admin')->middleware('isLogin')->group(function(){
 
 Route::prefix('admin')->middleware('isAdmin')->group(function(){
     Route::get('panel',[DashboardController::class,'index'])->name('dashboard');
+    Route::resource('makaleler',ArticleController::class);
     Route::get('logout',[AuthController::class,'logout'])->name('logout');
 });
 

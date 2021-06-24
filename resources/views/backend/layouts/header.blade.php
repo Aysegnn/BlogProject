@@ -19,5 +19,6 @@
 
     <!-- Custom styles for this template-->
     <link href="/back/css/sb-admin-2.min.css" rel="stylesheet">
+     <link href="/back/vendor/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>

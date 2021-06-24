@@ -56,7 +56,13 @@
     <!-- Page level custom scripts -->
     <script src="/back/js/demo/chart-area-demo.js"></script>
     <script src="/back/js/demo/chart-pie-demo.js"></script>
+    
+    <script src="/back/vendor/jquery-easing/jquery.easing.min.js"></script>
 
+    <script src="/back/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/back/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/back/js/demo/datatables-demo.js"></script>
+  
 </body>
 
 </html>
