@@ -16,6 +16,9 @@ use App\Http\Controllers\Backend\AuthController;;
 
 Route::get('/admin/panel',[DashboardController::class,'index'])->name('dashboard');
 Route::get('/admin/login',[AuthController::class,'login'])->name('login');
+Route::post('/admin/login',[AuthController::class,'loginPost'])->name('login-post');
+Route::get('/admin/logout',[AuthController::class,'logout'])->name('logout');
+
 
 
 /*
