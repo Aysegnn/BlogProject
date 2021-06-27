@@ -1,12 +1,16 @@
 
+
    </div>
-  <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Blog Sitesi Admin 2021</span>
-                    </div>
-                </div>
-            </footer>
+
+   <div>
+      <div> 
+            <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; Blog Sitesi Admin 2021</span>
+                            </div>
+                        </div>
+                    </footer>
             <!-- End of Footer -->
 
         </div>
@@ -62,7 +66,9 @@
     <script src="/back/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="/back/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="/back/js/demo/datatables-demo.js"></script>
-  
+    @yield('js')
+    @toastr_js
+    @toastr_render
 </body>
 
 </html>
