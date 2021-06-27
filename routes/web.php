@@ -23,6 +23,7 @@ Route::prefix('admin')->middleware('isLogin')->group(function(){
 Route::prefix('admin')->middleware('isAdmin')->group(function(){
     Route::get('panel',[DashboardController::class,'index'])->name('dashboard');
     Route::resource('makaleler',ArticleController::class);
+    Route::get('/switch',[ArticleController::class,'switch'])->name('switch');
     Route::get('logout',[AuthController::class,'logout'])->name('logout');
 });
 
