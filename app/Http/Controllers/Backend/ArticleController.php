@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class ArticleController extends Controller
 {
@@ -144,7 +145,32 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
+        Article::find($id)->delete();
+        toastr()->success('Makale Başarı ile Geri Dönüşüm Kutusuna Gönderildi');
+        return redirect()->route('makaleler.index');
         
-        return "destroy";
+    }
+
+    public function trashed(){
+        $articles=Article::onlyTrashed()->orderBy('deleted_at','desc')->get();
+        return view('backend.articles.trashed',compact('articles'));
+    }
+
+    public function restore($id){
+        Article::onlyTrashed()->find($id)->restore();
+        toastr()->success('Makale Başarı ile Geri Gönderildi');
+        return redirect()->route('makaleler.index');
+    }
+
+    public function deleteTrashed($id){
+
+        Article::onlyTrashed()->find($id);
+        if(File::exists($article->image)){
+            File::delete(public_path($article->image));
+        }
+        die;
+        $article->forceDelete();
+        toastr()->success('Makale Başarı ile Silindi');
+        return redirect()->route('trashed');
     }
 }

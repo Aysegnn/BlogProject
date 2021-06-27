@@ -14,6 +14,7 @@ class CreateArticlesTable extends Migration
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
+            
             $table->bigIncrements('id');
             $table->unsignedBigInteger('category_id');
             $table->string('title');
@@ -22,8 +23,8 @@ class CreateArticlesTable extends Migration
             $table->integer('hit')->default(0);
             $table->integer('status')->default(0)->comment('0:Pasif 1:Aktif');
             $table->string('slug');
+            $table->softDeletes();
             $table->timestamps();
-
             $table->foreign('category_id')->references('id')->on('categories');
         });
     }
@@ -36,5 +37,6 @@ class CreateArticlesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('articles');
+        $table->dropSoftDeletes();
     }
 }
