@@ -88,6 +88,29 @@
     </div>
   </div>
 </div>
+<div class="modal" id="deleteModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Kategoriyi Sil</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div id="body" class="modal-body">
+         <div  class="alert alert-danger" id="articleAlert"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+        <form action="{{route('categories.delete')}}" method="post">
+        @csrf
+        <input type="hidden" name="id" id="deleteId">
+        <button id="deleteButton" type="submit" class="btn btn-success">Sil</button>
+        </form>
+        
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 @endsection
 @section('css')
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -97,6 +120,38 @@
 <script>
     $(function() {
       
+   
+      $('.remove-click').click(function(){
+          id = $(this)[0].getAttribute('category-id');
+          count=$(this)[0].getAttribute('category-count');
+          name=$(this)[0].getAttribute('category-name');
+          if(id==1){
+            $('#articleAlert').html(name+' kategorisi silinemez. Silinen diğer kategorilere ait makaleler bu kategoriye eklenecektir.'); 
+            $('#body').show();
+            $('#deleteButton').hide();
+            $('#deleteModal').modal();
+             return;
+          }
+          $('#deleteButton').show();
+          $('#deleteId').val(id);
+          $('#articleAlert').html('');
+          $('#body').hide();
+          if(count>0){
+            $('#articleAlert').html('Bu kategoriye ait ' +count+ ' makale bulunmaktadır. Silmek istediğinize emin misiniz?');
+            $('#body').show();
+          }
+          $('#deleteModal').modal();
+          $.ajax({
+            type:'POST',
+            url:'{{route('categories.delete')}}',
+            data:{id:id},
+            success:function(data){
+            console.log(data);
+       
+            $('#deleteModal').modal();
+            }
+          });
+        });
 
 
         $('.edit-click').click(function(){

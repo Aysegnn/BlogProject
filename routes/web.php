@@ -34,8 +34,10 @@ Route::prefix('admin')->middleware('isAdmin')->group(function(){
     Route::get('/kategoriler',[CategoryController::class,'index'])->name('categories');
     Route::post('/kategoriler/create',[CategoryController::class,'create'])->name('categories.create');
     Route::post('/kategoriler/update',[CategoryController::class,'update'])->name('categories.update');
+    Route::post('/kategoriler/delete',[CategoryController::class,'delete'])->name('categories.delete');
     Route::get('/kategoriler/switch',[CategoryController::class,'switch'])->name('categories.switch');
     Route::get('/kategoriler/getData',[CategoryController::class,'getData'])->name('categories.getData');
+  
 
 
 
