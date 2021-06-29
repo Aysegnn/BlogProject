@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\ArticleController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\PageController;
 
 
 
@@ -38,8 +39,16 @@ Route::prefix('admin')->middleware('isAdmin')->group(function(){
     Route::get('/kategoriler/switch',[CategoryController::class,'switch'])->name('categories.switch');
     Route::get('/kategoriler/getData',[CategoryController::class,'getData'])->name('categories.getData');
   
+    //Pges Routes
+
+    Route::get('/sayfalar',[PageController::class,'index'])->name('pages.index');
+    Route::get('/switch',[PageController::class,'switch'])->name('pages.switch');
+    
 
 
+
+
+    //
 
     Route::get('logout',[AuthController::class,'logout'])->name('logout');
 });

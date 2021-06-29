@@ -45,6 +45,21 @@
            
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link  @if(Request::segment(2)=='sayfalar') in @else collapsed @endif"   data-toggle="collapse" data-target="#collapsePage"
+                aria-expanded="true" aria-controls="collapsePage">
+                <i class="fas fa-file"></i>
+                <span>Sayfalar</span>
+            </a>
+            <div id="collapsePage" class="collapse  @if(Request::segment(2)=='sayfalar') show  @endif " aria-labelledby="headingPage" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Sayfa İşlemleri:</h6>
+                    <a class="collapse-item   @if(Request::segment(2)=='sayfalar' and !Request::segment(3)) active  @endif"  href="{{route('pages.index')}}">Sayfalar</a>
+                    <a class="collapse-item  @if(Request::segment(2)=='sayfalar' and Request::segment(3)=='create') active  @endif" href="{{route('makaleler.create')}}">Sayfa Oluştur</a>
+                </div>
+            </div>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -52,27 +67,6 @@
         <div class="sidebar-heading">
             Addons
         </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
-            </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="{{route('login')}}">Login</a>
-                    <a class="collapse-item" href="register.html">Register</a>
-                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html">404 Page</a>
-                    <a class="collapse-item" href="blank.html">Blank Page</a>
-                </div>
-            </div>
-        </li>
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
