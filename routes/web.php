@@ -48,6 +48,7 @@ Route::prefix('admin')->middleware('isAdmin')->group(function(){
     Route::post('/sayfalar/store',[PageController::class,'store'])->name('pages.store');
     Route::post('/sayfalar/update/{id}',[PageController::class,'update'])->name('pages.update');
     Route::post('/sayfalar/delete/{id}',[PageController::class,'destroy'])->name('pages.delete');
+    Route::get('/sayfalar/orders',[PageController::class,'orders'])->name('pages.orders');
    
     
 
