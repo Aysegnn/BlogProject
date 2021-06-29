@@ -128,7 +128,7 @@ class ArticleController extends Controller
         $article->save();
         toastr()->success('Makale Başarı ile Güncellendi');
        return redirect()->route('makaleler.index');
-        return "geldi";
+      
     }
 
     public function switch(Request $request){

@@ -43,6 +43,12 @@ Route::prefix('admin')->middleware('isAdmin')->group(function(){
 
     Route::get('/sayfalar',[PageController::class,'index'])->name('pages.index');
     Route::get('/switch',[PageController::class,'switch'])->name('pages.switch');
+    Route::get('/sayfalar/create',[PageController::class,'create'])->name('pages.create');
+    Route::get('/sayfalar/edit/{id}',[PageController::class,'edit'])->name('pages.edit');
+    Route::post('/sayfalar/store',[PageController::class,'store'])->name('pages.store');
+    Route::post('/sayfalar/update/{id}',[PageController::class,'update'])->name('pages.update');
+    Route::post('/sayfalar/delete/{id}',[PageController::class,'destroy'])->name('pages.delete');
+   
     
 
 

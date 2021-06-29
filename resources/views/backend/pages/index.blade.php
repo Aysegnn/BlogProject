@@ -35,9 +35,8 @@
                         
                                             <td>
                                                 <a  target="_blank" href="{{route('pages',$page->slug)}}" title="Görüntüle" class="btn btn-sm btn-success"> <i class="fa fa-eye"></i> </a>
-                                                <a href="" title="Düzenle" class="btn btn-sm btn-primary"> <i class="fa fa-pen"></i> </a>
-                                               <form action="" method="post">
-                                               @method('DELETE')
+                                                <a href="{{route('pages.edit',$page->id)}}" title="Düzenle" class="btn btn-sm btn-primary"> <i class="fa fa-pen"></i> </a>
+                                               <form action="{{route('pages.delete',$page->id)}}" method="post">
                                                @csrf
                                                  <button title="Sil" class="btn btn-sm btn-danger" type="submit"> <i class="fa fa-times"></i></button>
                                                </form>
